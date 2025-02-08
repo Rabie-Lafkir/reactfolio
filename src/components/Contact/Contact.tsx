@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { FaFacebook, FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaLinkedin, FaGithub, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
+import { FaX, FaXTwitter } from "react-icons/fa6";
 
 const Contact = () => {
     return (
@@ -10,26 +11,25 @@ const Contact = () => {
             className="min-h-screen grid grid-cols-1 md:grid-cols-2 gap-16 items-center justify-center bg-white dark:bg-gray-900 text-gray-900 dark:text-white p-10"
         >
             {/* Additional Contact Info Section */}
-            <div className="h-full flex flex-col items-center text-center p-10 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg">
+            <div className="h-full flex flex-col gap-4 p-10 items-center text-center bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg">
                 <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
                 <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">I'm open to discussions about new projects, collaborations, or networking.</p>
-                <div className="space-y-5 text-lg text-gray-700 dark:text-gray-300">
+                <div className="text-xs md:text-lg font-semibold text-gray-700 dark:text-gray-300 text-start flex flex-col justify-center gap-4 px-4">
                     <p className="flex items-center space-x-2">
-                        📧 <span>lafkirrabie2000@gmail.com</span>
+                        <FaEnvelope className="text-red-500" /> <span>lafkirrabie2000@gmail.com</span>
                     </p>
                     <p className="flex items-center space-x-2">
-                        📍 <span>Morocco, North Africa</span>
+                        <FaMapMarkerAlt className="text-red-500" /> <span>Casablanca</span>
                     </p>
                     <p className="flex items-center space-x-2">
-                        📞 <span>+212 600 000 000</span>
+                        <FaPhoneAlt className="text-red-500" /> <span>+212 656 00 33 12</span>
                     </p>
                 </div>
                 {/* Social Media Links */}
                 <div className="flex space-x-6 mt-8">
-                    <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-transform transform hover:scale-110"><FaFacebook size={30} /></a>
-                    <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-400 transition-transform transform hover:scale-110"><FaTwitter size={30} /></a>
-                    <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-transform transform hover:scale-110"><FaLinkedin size={30} /></a>
-                    <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-transform transform hover:scale-110"><FaGithub size={30} /></a>
+                    <a href="https://x.com/LafkirR" target="_blank" className="text-gray-600 dark:text-gray-400 hover:text-blue-400 dark:hover:text-white transition-transform transform hover:scale-110"><FaXTwitter size={30} /></a>
+                    <a href="https://www.linkedin.com/in/rabie-lafkir/" target="_blank" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-transform transform hover:scale-110"><FaLinkedin size={30} /></a>
+                    <a href="https://github.com/Rabie-Lafkir" target="_blank" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-transform transform hover:scale-110"><FaGithub size={30} /></a>
                 </div>
             </div>
 
