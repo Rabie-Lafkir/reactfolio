@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 
 const Navbar = ({ darkMode, setDarkMode }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { t, i18n } = useTranslation();
+    const { lang } = useParams(); // Get language from URL
+    const currentLang = lang || i18n.language; // Use language from URL or default
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -25,11 +30,13 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                             )}
                         </svg>
                     </button>
-                    <div className="text-2xl font-bold uppercase text-gray-800 dark:text-white">
-                        <Link to="/">Rabie Lafkir</Link>
+                    <div className="md:text-2xl font-bold uppercase text-gray-800 dark:text-white">
+                        <Link to={`/${currentLang}`}>
+                            {i18n.language === "ar" ? "ربيع لفقير" : "Rabie Lafkir"}
+                        </Link>
                     </div>
                 </div>
-                
+
                 <motion.ul
                     className={`absolute top-16 left-0 w-full bg-white dark:bg-gray-900 shadow-lg md:static md:flex md:items-center md:justify-center md:w-auto md:space-x-6 md:bg-transparent md:shadow-none transition-opacity duration-300 ${isMenuOpen ? "opacity-100" : "opacity-0 md:opacity-100"}`}
                     initial={{ opacity: 0 }}
@@ -38,20 +45,23 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                 >
                     {['about', 'studies', 'projects', 'contact'].map((item) => (
                         <li key={item} className="py-3 text-center md:py-0 md:flex md:items-center">
-                            <Link to={`/${item}`} className="block px-6 py-2 text-gray-700 dark:text-white uppercase hover:text-red-500 dark:hover:text-red-400 transition-colors">
-                                {item}
+                            <Link to={`/${currentLang}/${item}`} className="block px-6 py-2 text-gray-700 dark:text-white uppercase hover:text-red-500 dark:hover:text-red-400 transition-colors">
+                                {t(`navbar.${item}`)}
                             </Link>
                         </li>
                     ))}
                 </motion.ul>
 
-                {/* Dark Mode Toggle */}
-                <button
-                    onClick={() => setDarkMode(!darkMode)}
-                    className="p-2 bg-gray-200 dark:bg-gray-700 rounded-full transition-colors"
-                >
-                    {darkMode ? "🌙" : "☀️"}
-                </button>
+                <div className="flex items-center justify-between gap-2">
+                    <button
+                        onClick={() => setDarkMode(!darkMode)}
+                        className="p-2 bg-gray-200 dark:bg-gray-700 rounded-full transition-colors"
+                    >
+                        {darkMode ? "🌙" : "☀️"}
+                    </button>
+
+                    <LanguageSwitcher />
+                </div>
             </nav>
             <div className="pt-16"></div>
         </>
